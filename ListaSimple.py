@@ -6,9 +6,6 @@ class Nodo:
 class ListaSimple:
     def __init__(self):
         self.primer_nodo=None
-
-    def rngColor():
-        pass
     
     def primer_elemento(self, celda):
         nuevo = Nodo(celda)
@@ -39,8 +36,6 @@ class ListaSimple:
         filaActual = 501
         while n.nodo_siguiente is not None:
             if filaActual != n.celda.pos_y:
-                ##print("")
-                ##print("\ny = " + str(n.celda.pos_y))
                 filaActual = n.celda.pos_y
             ##if n.celda.viva:
                 ##print(str(n.celda.id_organismo) + ", ", end="")
@@ -50,6 +45,14 @@ class ListaSimple:
             n = n.nodo_siguiente
         print("")
     
+    def encontrarID(self, x, y):
+        n = self.primer_nodo
+        while n.nodo_siguiente is not None:
+            if x == n.celda.pos_x and y == n.celda.pos_y:
+                if n.celda.id_organismo is not None:
+                    return n.celda.id_organismo
+            n = n.nodo_siguiente
+
     def seReproduceLinea(self, x, y):
 
         #Primero asigna a CeldaBase la celda que se busca ver si sobrevive
@@ -79,7 +82,6 @@ class ListaSimple:
         n = self.primer_nodo
         while n.nodo_siguiente is not None:
             if TopeAnterior == TopePosterior:
-                print("No hay ninguna wea pu")
                 break
             if n.celda.pos_y == y and n.celda.id_organismo != CeldaBase.celda.id_organismo and n.celda.pos_x > TopeAnterior and n.celda.pos_x < TopePosterior:
                 n.celda.id_organismo = CeldaBase.celda.id_organismo
@@ -109,7 +111,6 @@ class ListaSimple:
         n = self.primer_nodo
         while n.nodo_siguiente is not None:
             if TopeSuperior == TopeInferior:
-                print("No hay ninguna wea pu")
                 break
 
             if n.celda.pos_x == x and n.celda.id_organismo != CeldaBase.celda.id_organismo and n.celda.pos_y > TopeSuperior and n.celda.pos_y < TopeInferior:
@@ -135,7 +136,6 @@ class ListaSimple:
     def ReproducirDiagonal4(self, x_base, y_base, id, coordenadas):
         n = self.primer_nodo
         if coordenadas is None:
-            print("No hay ninguna wea en la diagonal pu")
             return 
         while n.nodo_siguiente is not None:
             if y_base + 1 == n.celda.pos_y and x_base + 1 == n.celda.pos_x:
@@ -166,20 +166,16 @@ class ListaSimple:
         n = self.primer_nodo
         if coordenadas is None:
             return 
-        print(coordenadas)
         while n.nodo_siguiente is not None:
             if y_base - 1 == n.celda.pos_y and x_base + 1 == n.celda.pos_x:
                 if n.celda.pos_x == coordenadas[0] and n.celda.pos_y == coordenadas[1]:
                     n.celda.id_organismo = id
-                    print('entro a cambiar de id y return')
                     return
                 else:
-                    print('entro a cambiar de id')
                     n.celda.id_organismo = id
                     self.ReproducirDiagonal1(x_base + 1,y_base -1, id,coordenadas)
             n=n.nodo_siguiente
         
-
     def seReproduceDiagonal2(self, x, y, id): 
         n = self.primer_nodo
         y_tope = y
@@ -198,20 +194,16 @@ class ListaSimple:
         n = self.primer_nodo
         if coordenadas is None:
             return 
-        print(coordenadas)
         while n.nodo_siguiente is not None:
             if y_base - 1 == n.celda.pos_y and x_base - 1 == n.celda.pos_x:
                 if n.celda.pos_x == coordenadas[0] and n.celda.pos_y == coordenadas[1]:
                     n.celda.id_organismo = id
-                    print('entro a cambiar de id y return')
                     return
                 else:
-                    print('entro a cambiar de id')
                     n.celda.id_organismo = id
                     self.ReproducirDiagonal2(x_base - 1,y_base -1, id,coordenadas)
             n=n.nodo_siguiente
         
-
     def seReproduceDiagonal3(self, x, y, id): 
         n = self.primer_nodo
         y_tope = y
@@ -230,15 +222,12 @@ class ListaSimple:
         n = self.primer_nodo
         if coordenadas is None:
             return 
-        print(coordenadas)
         while n.nodo_siguiente is not None:
             if y_base + 1 == n.celda.pos_y and x_base - 1 == n.celda.pos_x:
                 if n.celda.pos_x == coordenadas[0] and n.celda.pos_y == coordenadas[1]:
                     n.celda.id_organismo = id
-                    print('entro a cambiar de id y return')
                     return
                 else:
-                    print('entro a cambiar de id')
                     n.celda.id_organismo = id
                     self.ReproducirDiagonal3(x_base - 1,y_base +1, id,coordenadas)
             n=n.nodo_siguiente
@@ -277,7 +266,7 @@ class ListaSimple:
                     Fila= n.celda.pos_y
                 
                 if n.celda.id_organismo == None:
-                    Texto += "--|"
+                    Texto += "``|"
                 else: 
                     if n.celda.id_organismo < 10:
                         Texto += str(n.celda.id_organismo) + ".|"

@@ -90,48 +90,33 @@ def LeerXml(Lista):
 ##Ejecucion principal!!!!!!!!!!!!!!!!!!!!!1
 
 
-ListaCeldas = ListaSimple()
-crearCuadricula(14, 18, ListaCeldas)
-##ListaCeldas.imprimeEnConsola()
+ListaEjemplo = ListaSimple()
+crearCuadricula(14, 18, ListaEjemplo)
+
 #organismo de prueba 
 for i in range(0,14):
-    anadirOrganismos(i,4,2,ListaCeldas)
+    anadirOrganismos(i,4,2,ListaEjemplo)
 for i in range(0,18):
-    anadirOrganismos(4,i,2,ListaCeldas)
+    anadirOrganismos(4,i,2,ListaEjemplo)
 for i in range(0,14):
     contador=4
-    anadirOrganismos(i,i,2,ListaCeldas)
+    anadirOrganismos(i,i,2,ListaEjemplo)
 for i in range(0,9):
     contador=4
-    anadirOrganismos(8-i,i,2,ListaCeldas)
+    anadirOrganismos(8-i,i,2,ListaEjemplo)
 #organismo de prueba 1
 
-anadirOrganismos(4,4,1,ListaCeldas) ## Base
-anadirOrganismos(4,1,1,ListaCeldas) ## Tope Superior
-anadirOrganismos(4,8,1,ListaCeldas) ## Tope Inferior
-anadirOrganismos(1,4,1,ListaCeldas) ## Tope Anterior
-anadirOrganismos(8,4,1,ListaCeldas) ## Tope Posterior
-anadirOrganismos(10,10,1,ListaCeldas)
-anadirOrganismos(1,1,1,ListaCeldas)
-anadirOrganismos(5,5,69,ListaCeldas)
-anadirOrganismos(2,6,1,ListaCeldas)
-anadirOrganismos(7,1,1,ListaCeldas)
-ListaCeldas.seReproduceLinea(4,4)
+anadirOrganismos(4,4,1,ListaEjemplo) ## Base
+anadirOrganismos(4,1,1,ListaEjemplo) ## Tope Superior
+anadirOrganismos(4,8,1,ListaEjemplo) ## Tope Inferior
+anadirOrganismos(1,4,1,ListaEjemplo) ## Tope Anterior
+anadirOrganismos(8,4,1,ListaEjemplo) ## Tope Posterior
+anadirOrganismos(10,10,1,ListaEjemplo)
+anadirOrganismos(1,1,1,ListaEjemplo)
+anadirOrganismos(6,5,69,ListaEjemplo)
+anadirOrganismos(2,6,1,ListaEjemplo)
+anadirOrganismos(7,1,1,ListaEjemplo)
 
-ListaCeldas.ReproducirDiagonal4(4,4,1,ListaCeldas.seReproduceDiagonal4(4,4,1))
-ListaCeldas.ReproducirDiagonal1(4,4,1,ListaCeldas.seReproduceDiagonal1(4,4,1))
-ListaCeldas.ReproducirDiagonal2(4,4,1,ListaCeldas.seReproduceDiagonal2(4,4,1))
-ListaCeldas.ReproducirDiagonal3(4,4,1,ListaCeldas.seReproduceDiagonal3(4,4,1))
-anadirOrganismos(5,7,69,ListaCeldas)
-##ListaCeldas.revisarVidas()
-##ListaCeldas.GraphvizParaTabla()
-GenerarGrafica(ListaCeldas)
-
-
-##ListaCeldas = ListaSimple()
-
-##LeerXml(ListaCeldas)
-##GenerarGrafica(ListaCeldas)
 
 
 
