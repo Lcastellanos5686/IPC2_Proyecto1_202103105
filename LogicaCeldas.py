@@ -36,11 +36,11 @@ def anadirOrganismos(x, y, ID, Lista):
         n = n.nodo_siguiente
     n.celda.darVida(ID, True)
 
-def prLightPurple(skk): print("\033[94m {}\033[00m" .format(skk))
+def prLightPurple(skk): print(skk)
 
-def prCyan(skk): print("\033[96m {}\033[00m" .format(skk))
+def prCyan(skk): print(skk)
 
-def prGreen(skk): print("\033[92m {}\033[00m" .format(skk))
+def prGreen(skk): print(skk)
 
 def GenerarGrafica(Lista):
     docGraphviz = "digraph structs {\n"
