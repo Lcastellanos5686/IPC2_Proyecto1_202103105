@@ -6,6 +6,7 @@ class Nodo:
 class ListaSimple:
     def __init__(self):
         self.primer_nodo=None
+        self.ids = None
     
     def primer_elemento(self, celda):
         nuevo = Nodo(celda)
@@ -73,6 +74,9 @@ class ListaSimple:
                 TopePosterior = n.celda.pos_x
             n = n.nodo_siguiente
 
+        if TopeAnterior == None and TopePosterior == None:
+            print('     La celda no se reprodujo horizontalmente')
+
         if TopeAnterior is None:
             TopeAnterior = CeldaBase.celda.pos_x
         if TopePosterior is None:
@@ -102,6 +106,9 @@ class ListaSimple:
         ##print(TopeSuperior)
         ##print(TopeInferior)
 
+        if TopeSuperior == None and TopeInferior == None:
+            print('     La celda no se reprodujo Verticalmente')
+
         if TopeSuperior is None:
             TopeSuperior = CeldaBase.celda.pos_y
         if TopeInferior is None:
@@ -118,7 +125,7 @@ class ListaSimple:
 
             n = n.nodo_siguiente
 
-    def seReproduceDiagonal4(self, x, y, id): #tiene que salir 69, ya nos reconoce la primera diagonal siguiente, ahora hay que reconocer recursivamente
+    def seReproduceDiagonal4(self, x, y, id): 
         n = self.primer_nodo
 
         y_tope = x
@@ -136,6 +143,7 @@ class ListaSimple:
     def ReproducirDiagonal4(self, x_base, y_base, id, coordenadas):
         n = self.primer_nodo
         if coordenadas is None:
+            print('     No se reprodujo en el cuarto cuadrante')
             return 
         while n.nodo_siguiente is not None:
             if y_base + 1 == n.celda.pos_y and x_base + 1 == n.celda.pos_x:
@@ -153,7 +161,7 @@ class ListaSimple:
         y_tope = y
         x_tope = x
         while n.nodo_siguiente is not None:
-            if y_tope - 1 == n.celda.pos_y and x_tope + 1 == n.celda.pos_x: ##si la celda seleccionada tiene las mismas coordenadas que la celda siguiente a la base
+            if y_tope - 1 == n.celda.pos_y and x_tope + 1 == n.celda.pos_x: 
                 
                 if n.celda.id_organismo == id:
                     Coordenadas = [x_tope+1, y_tope-1]
@@ -165,6 +173,7 @@ class ListaSimple:
     def ReproducirDiagonal1(self, x_base, y_base, id, coordenadas):
         n = self.primer_nodo
         if coordenadas is None:
+            print('     No se reprodujo en el primer cuadrante')
             return 
         while n.nodo_siguiente is not None:
             if y_base - 1 == n.celda.pos_y and x_base + 1 == n.celda.pos_x:
@@ -181,7 +190,7 @@ class ListaSimple:
         y_tope = y
         x_tope = x
         while n.nodo_siguiente is not None:
-            if y_tope - 1 == n.celda.pos_y and x_tope - 1 == n.celda.pos_x: ##si la celda seleccionada tiene las mismas coordenadas que la celda siguiente a la base
+            if y_tope - 1 == n.celda.pos_y and x_tope - 1 == n.celda.pos_x: 
                 
                 if n.celda.id_organismo == id:
                     Coordenadas = [x_tope-1, y_tope-1]
@@ -193,6 +202,7 @@ class ListaSimple:
     def ReproducirDiagonal2(self, x_base, y_base, id, coordenadas):
         n = self.primer_nodo
         if coordenadas is None:
+            print('     No se reprodujo en el segundo cuadrante')
             return 
         while n.nodo_siguiente is not None:
             if y_base - 1 == n.celda.pos_y and x_base - 1 == n.celda.pos_x:
@@ -209,7 +219,7 @@ class ListaSimple:
         y_tope = y
         x_tope = x
         while n.nodo_siguiente is not None:
-            if y_tope + 1 == n.celda.pos_y and x_tope - 1 == n.celda.pos_x: ##si la celda seleccionada tiene las mismas coordenadas que la celda siguiente a la base
+            if y_tope + 1 == n.celda.pos_y and x_tope - 1 == n.celda.pos_x: 
                 
                 if n.celda.id_organismo == id:
                     Coordenadas = [x_tope-1, y_tope+1]
@@ -221,6 +231,7 @@ class ListaSimple:
     def ReproducirDiagonal3(self, x_base, y_base, id, coordenadas):
         n = self.primer_nodo
         if coordenadas is None:
+            print('     No se reprodujo en el tercer cuadrante')
             return 
         while n.nodo_siguiente is not None:
             if y_base + 1 == n.celda.pos_y and x_base - 1 == n.celda.pos_x:
@@ -232,7 +243,7 @@ class ListaSimple:
                     self.ReproducirDiagonal3(x_base - 1,y_base +1, id,coordenadas)
             n=n.nodo_siguiente
 
-    def GraphvizParaTabla(self) -> str: ##Generar tabla concatendando |'s. Recordar anadir una fila y columna extra
+    def GraphvizParaTabla(self) -> str:
         contador=-1
         Texto = ""
         n = self.primer_nodo

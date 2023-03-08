@@ -15,7 +15,7 @@ class Celda:
         self.id_organismo = ID
         self.viva=viva
 
-def crearCuadricula(x,y,Lista):    ## empiezan de 1
+def crearCuadricula(x,y,Lista):
     Lista.primer_elemento(Celda(0,0))
     PrimerElemento = True
 
@@ -36,13 +36,21 @@ def anadirOrganismos(x, y, ID, Lista):
         n = n.nodo_siguiente
     n.celda.darVida(ID, True)
 
+def prLightPurple(skk): print("\033[94m {}\033[00m" .format(skk))
+
+def prCyan(skk): print("\033[96m {}\033[00m" .format(skk))
+
+def prGreen(skk): print("\033[92m {}\033[00m" .format(skk))
+
 def GenerarGrafica(Lista):
     docGraphviz = "digraph structs {\n"
     docGraphviz += "    node [shape=record];\n"
     docGraphviz += "    rankdir = LR"
     docGraphviz += "    MATRIZ [fontname = \"Courier New\",\n"
     docGraphviz += "        label=\"\n" + Lista.GraphvizParaTabla()
-    docGraphviz += "\"]"
+    docGraphviz += "\"];\n\""
+    docGraphviz += Lista.ids
+    docGraphviz += "\""
     docGraphviz += "\n                }"
     print(docGraphviz)
     archivoDOT = open("muestra.dot","w")
@@ -56,7 +64,6 @@ def LeerXml(Lista):
 
     coleccionX  = objetoXML.getElementsByTagName('columnas')
     coleccionY  = objetoXML.getElementsByTagName('filas')
-    muestra     = objetoXML.getElementsByTagName('muestra')
 
     dimensionX = coleccionX[0].childNodes[0].data
     dimensionY = coleccionY[0].childNodes[0].data
@@ -64,31 +71,30 @@ def LeerXml(Lista):
     crearCuadricula(int(dimensionX), int(dimensionY), Lista)
     organismosXML = objetoXML.getElementsByTagName('organismo')
     celdasVivasXML = objetoXML.getElementsByTagName('celdaViva')
-    print('         || Datos de la Muestra||\n')
+    prGreen('         || Datos de la Muestra||\n')
     contador=1
-    for organismo in organismosXML:
 
+    Lista.ids = ""
+    for organismo in organismosXML:
+        
         codigo = organismo.childNodes[1].firstChild.data
         nombre = organismo.childNodes[3].firstChild.data
+
+        Lista.ids += str(contador) +  " -> " + codigo + "\n"
+
+
         
-        print('codigo: ' + codigo)
-        print('nombre: ' + nombre + "\n")
-        ##nuevoOrganismo = Organismo(codigo,nombre,letra)
-        ##nuevaMuestra.listaOrganismos.agregar_al_inicio(nuevoOrganismo)
-        ##letra = letra + 1
+        prLightPurple('Codigo: ' + codigo)
+        prLightPurple('Nombre: ' + nombre + "\n")
         print('     Se encuentra en:')
         for celdaViva in celdasVivasXML:
             fila            = celdaViva.childNodes[1].firstChild.data
             columna         = celdaViva.childNodes[3].firstChild.data
             codigoOrganismo = celdaViva.childNodes[5].firstChild.data
             if codigoOrganismo == codigo:
-                print('el contador esta en ' + str(contador))
                 anadirOrganismos(int(columna)+1, int(fila)+1, contador, Lista)
-                print('                         x=' + fila + ', y=' + columna)
+                prCyan('                         x=' + fila + ', y=' + columna)
         contador +=1
-
-##Ejecucion principal!!!!!!!!!!!!!!!!!!!!!1
-
 
 ListaEjemplo = ListaSimple()
 crearCuadricula(14, 18, ListaEjemplo)
