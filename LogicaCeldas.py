@@ -119,7 +119,7 @@ anadirOrganismos(1,4,1,ListaEjemplo) ## Tope Anterior
 anadirOrganismos(8,4,1,ListaEjemplo) ## Tope Posterior
 anadirOrganismos(10,10,1,ListaEjemplo)
 anadirOrganismos(1,1,1,ListaEjemplo)
-anadirOrganismos(6,5,69,ListaEjemplo)
+anadirOrganismos(6,5,70,ListaEjemplo)
 anadirOrganismos(2,6,1,ListaEjemplo)
 anadirOrganismos(7,1,1,ListaEjemplo)
 

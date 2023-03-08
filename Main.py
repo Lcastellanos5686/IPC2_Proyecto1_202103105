@@ -1,7 +1,7 @@
 import LogicaCeldas
 
 
-ListaCeldas = LogicaCeldas.ListaEjemplo
+ListaCeldas = None
 
 en_menu = True
 
